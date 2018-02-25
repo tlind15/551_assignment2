@@ -11,7 +11,7 @@ def logistic_regression(data, label, max_iter, learning_rate):
 
 	Args:
 	data: train data with shape (1561, 3), which means 1561 samples and 
-		  each sample has 3 features.(1, symmetry, average internsity)
+		  each sample has 3 features.(1, symmetry, average intensity)
 	label: train data's label with shape (1561,1). 
 		   1 for digit number 1 and -1 for digit number 5.
 	max_iter: max iteration numbers
@@ -20,7 +20,19 @@ def logistic_regression(data, label, max_iter, learning_rate):
 	Returns:
 		w: the seperater with shape (3, 1). You must initilize it with w = np.zeros((d,1))
 	'''
-	pass
+    
+    #P(y|x) = theta(ywTx) => theta(label[i]*w*transpose(data[0:]))
+    #for (i in range(0, max_iter))
+    # for each data row 
+    # for each x(n) in row
+    # w = w + label(n)*data(n)*(learning_rate/(1 + exp(label[n]*w*transpose(data[0:]))
+    w = np.zeros((1,data.shape[1]))
+    for (i in range(max_iter)):
+        for row in range(data.shape[0]):
+                y = label[row]
+                x = data[row,:]
+                w = w + y*x*((learning_rate)/(1 + e**(y*np.dot(x,np.transpose(w)))))
+    return w
 
 
 def thirdorder(data):
