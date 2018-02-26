@@ -25,11 +25,10 @@ def test_logistic_regression():
 	train_data,train_label = load_features(traindataloc)
 	test_data, test_label = load_features(testdataloc)
 	try:
-		train_test_a_model("logistic regression", train_data, train_label, test_data, \
-							test_label, max_iter, learning_rate)
+    		train_test_a_model("logistic regression", train_data, train_label, test_data, \
+                        test_label, max_iter, learning_rate)
 	except:
-		print("Please finish logistic_regression() and cross_entropy_error() functions \n\
-				before you run the test_logistic_regression() function.\n")
+        	print("Please finish logistic_regression() and cross_entropy_error() functions \n before you run the test_logistic_regression() function.\n")
 
 
 def test_thirdorder_logistic_regression():
@@ -39,13 +38,12 @@ def test_thirdorder_logistic_regression():
 	train_data,train_label = load_features(traindataloc)
 	test_data, test_label = load_features(testdataloc)
 	try:
-		new_train_data = thirdorder(train_data[:,1:3])
-		new_test_data = thirdorder(test_data[:,1:3])
-		train_test_a_model("3rd order logistic regression", new_train_data, train_label, \
-						new_test_data, test_label, max_iter, learning_rate)
+            new_train_data = thirdorder(train_data[:,1:3])
+            new_test_data = thirdorder(test_data[:,1:3])
+            train_test_a_model("3rd order logistic regression", new_train_data, train_label, \
+                           new_test_data, test_label, max_iter, learning_rate)
 	except:
-		print("Please finish thirdorder() function before you run\n\
-				the test_thirdorder_logistic_regression() function.\n")
+            print("Please finish thirdorder() function before you run\n the test_thirdorder_logistic_regression() function.\n")
 
 
 if __name__ == '__main__':
