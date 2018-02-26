@@ -54,7 +54,7 @@ def thirdorder(data):
     x1 = np.array(data[:,0])
     x2 = np.array(data[:,1])
     
-    
+    # np.multiply does element-wise multiplication of vector values
     x1_squared = np.multiply(x1, x1)
     x1_x2 = np.multiply(x1, x2)
     x2_squared = np.multiply(x2, x2)
@@ -64,6 +64,7 @@ def thirdorder(data):
     x2_squared_x1 = np.multiply(x2_squared, x1)
     x2_cubed = np.multiply(x2_squared, x2)
     
+    # np.column_stack put column vectors into a single matrix
     return np.column_stack((x, x1, x2, x1_squared, x1_x2, x2_squared, x1_cubed, x1_squared_x2, x2_squared_x1, x2_cubed))
 
 
@@ -82,8 +83,8 @@ def accuracy(x, y, w):
         accuracy: total percents of correctly classified samples. Set the threshold as 0.5,
         which means, if the predicted probability > 0.5, classify as 1; Otherwise, classify as -1.
     '''
-    num_of_data_points = x.shape[0]
-    num_classify_correct = 0
+    num_of_data_points = x.shape[0] # total number of data points
+    num_classify_correct = 0 # total number of data points correctly classified
     for row in range(num_of_data_points):
         p_of_y_given_x = theta(y[row]*np.dot(x[row,:],np.transpose(w)))
         if p_of_y_given_x > 0.5:
@@ -94,7 +95,8 @@ def accuracy(x, y, w):
         if classification == y[row]:
             num_classify_correct += 1
         
-    return num_classify_correct/num_of_data_points*100
+    return num_classify_correct/num_of_data_points*100 #percentage of correctly classified points
 
+# a helper function that returns the value of the sigmoid activation function
 def theta(s):
     return 1/(1+math.exp(-s))
