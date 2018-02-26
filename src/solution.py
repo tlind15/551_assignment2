@@ -1,5 +1,6 @@
 import numpy as np 
 from helper import *
+import random
 '''
 Homework2: logistic regression classifier
 '''
@@ -20,13 +21,16 @@ def logistic_regression(data, label, max_iter, learning_rate):
     Returns:
 		w: the seperater with shape (3, 1). You must initilize it with w = np.zeros((d,1))
     '''
-    
-    w = np.zeros((1,data.shape[1]))
+    random.seed()
+    w = np.zeros((1,data.shape[1])) # weights vector
     for i in range(max_iter):
-        for row in range(data.shape[0]):
-                y = label[row]
-                x = data[row,:]
-                w = w + y*x*((learning_rate)/(1 + math.exp(y*np.dot(x,np.transpose(w)))))
+        row = random.randint(0, data.shape[0] - 1) # pick a random point
+        y = label[row]
+        x = data[row,:]
+        
+        # stocastic gradient descent
+        # w(t+1) = w(t) - eta*gradient(ln(1+e**(-yw.T*x))) evaluated at random point (x, y)
+        w = w + y*x*((learning_rate)/(1 + math.exp(y*np.dot(x,np.transpose(w)))))
     print('\nWeights',w)
     return w
 
